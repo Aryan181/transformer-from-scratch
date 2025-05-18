@@ -35,4 +35,26 @@ for embedding in final_embeddings:
     keys.append(embedding @ W_K)
     values.append(embedding @ W_V)
 
-print(matrix)
+
+def softmax(x):
+    e_x = np.exp(x - np.max(x))  # subtract max for numerical stability
+    return e_x / e_x.sum()
+
+
+attention_outputs = []
+
+for query in queries:
+
+    scores = []
+
+    for key in keys:
+        dot = np.dot(query, key)
+        scaled = dot / 2.0
+        scores.append(scaled)
+
+    weights = softmax(scores)
+
+    final_vector = final_vector = np.sum([w * v for w, v in zip(weights, values)], axis=0)
+    attention_outputs.append(final_vector)
+
+print(np.array(attention_outputs))
