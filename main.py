@@ -76,3 +76,27 @@ for i in range(len(attention_outputs)):
     ffn_outputs.append(output)
 
 print(np.array(ffn_outputs))
+
+
+ 
+vocab = ["on", "down", "quickly", "the"]
+vocab_size = len(vocab)
+
+ 
+W_out = np.random.rand(4, vocab_size)
+
+ 
+last_vector = ffn_outputs[-1]   
+ 
+logits = last_vector @ W_out   
+
+ 
+probs = softmax(logits)
+
+# Print vocab with probabilities
+for word, prob in zip(vocab, probs):
+    print(f"{word}: {prob:.3f}")
+
+# Optional: get most likely next word
+next_word = vocab[np.argmax(probs)]
+print("\nPredicted next word:", next_word)
