@@ -58,3 +58,21 @@ for query in queries:
     attention_outputs.append(final_vector)
 
 print(np.array(attention_outputs))
+
+
+W1 = np.random.rand(4, 8)
+W2 = np.random.rand(8, 4)
+
+def relu(x):
+    return np.maximum(0, x)
+
+ffn_outputs = []
+
+for i in range(len(attention_outputs)):
+    residual = attention_outputs[i] + final_embeddings[i]   
+    hidden = relu(residual @ W1)  
+    final = hidden @ W2          
+    output = final + residual     
+    ffn_outputs.append(output)
+
+print(np.array(ffn_outputs))
