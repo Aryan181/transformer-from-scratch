@@ -2,7 +2,7 @@ import numpy as np
 
 word_embeddings = [] 
 position_embeddings = [] 
-sentence = "the dog sat"
+sentence = "2 + 2 = "
 words = sentence.split()  
 final_embeddings = []
 
@@ -79,7 +79,7 @@ print(np.array(ffn_outputs))
 
 
  
-vocab = ["on", "down", "quickly", "the"]
+vocab = ["4", "5", "1", "3"]
 vocab_size = len(vocab)
 
  
